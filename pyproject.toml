@@ -1,0 +1,84 @@
+[project]
+name = "chest-press-cxr"
+version = "0.1.0"
+description = "LoRA fine-tuning of general-purpose and medical LVLMs for patient-conditioned chest X-ray report generation on MIMIC-CXR and MIMIC-IV"
+readme = "README.md"
+requires-python = ">=3.12, <3.13"
+dependencies = [
+    "altair>=6.0.0",
+    "evaluate>=0.4.6",
+    "bert-score>=0.3.13",
+    "ipykernel>=7.1.0",
+    "matplotlib>=3.10.7",
+    "nltk>=3.9.2",
+    "polars>=1.40",
+    "radgraph>=0.0.7",
+    "rouge-score>=0.1.2",
+    "scikit-learn>=1.4", # F1-SRR-BERT / Category Score: sklearn.metrics.classification_report (samples avg)
+    "torch>=2.11",
+    "torchvision>=0.26",
+    "tqdm>=4.67.1",
+    "transformers>=5.5",
+    "accelerate>=1.13.0",
+    "flash-attn>=2.8.3",
+    "vllm==0.22.0",
+    # FlashInfer prebuilt kernels — avoids runtime nvcc JIT on HPC nodes that lack a CUDA toolkit.
+    # flashinfer-python and flashinfer-cubin are already transitive vLLM deps; pinning them
+    # here makes the setup explicit. flashinfer-jit-cache supplies prebuilt host-side bindings
+    # (sampling.cu, renorm.cu, etc.) so no JIT compilation step is needed at runtime.
+    "flashinfer-python",
+    "flashinfer-cubin",
+    "flashinfer-jit-cache",
+    # LoRA fine-tuning — verified compatible with the pinned transformers 5.x.
+    "trl>=0.16",
+    "peft>=0.14",
+    "bitsandbytes>=0.45", # QLoRA fallback; required even for bf16 LoRA (PEFT dep)
+    "tensorboard>=2.19",
+    # Fused linear-cross-entropy (SFTConfig use_liger_kernel) — avoids materialising the
+    # [seq × vocab] fp32 loss logits (the loss is computed in fp32 for stability even under
+    # bf16 training) that OOM long multi-image studies during *training*. Triton-based, no nvcc.
+    # CAVEAT: Liger only activates while model.training=True. TRL's eval path (compute_loss /
+    # shift_logits) still materialises the full fp32 logit tensor regardless. Stage-B eval
+    # relies on max_length=8192 + per_device_eval_batch_size=1 in train_reports.py to stay
+    # within VRAM budget.
+    "liger-kernel>=0.5",
+]
+
+[project.urls]
+Repository = "https://github.com/lks-hrsch/chest-press-cxr"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "ruff>=0.15.12",
+]
+
+[tool.uv.sources]
+flash-attn = { url = "https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.9.4/flash_attn-2.8.3+cu130torch2.11-cp312-cp312-linux_x86_64.whl" }
+flashinfer-jit-cache = { url = "https://github.com/flashinfer-ai/flashinfer/releases/download/v0.6.11.post2/flashinfer_jit_cache-0.6.11.post2+cu130-cp39-abi3-manylinux_2_28_x86_64.whl" }
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+extend-select = [
+    "I", # isort - import sorting
+    "N", # naming conventions
+]
+
+[tool.ruff.lint.isort]
+# Configure import sorting behavior
+force-single-line = false
+lines-after-imports = 2
+known-first-party = []
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]            # make `import src.*` resolve without a sys.path hack in tests
+addopts = "-ra --strict-markers --strict-config"
+xfail_strict = true

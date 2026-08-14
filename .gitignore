@@ -1,0 +1,10 @@
+.venv
+.venv/
+.direnv/
+data/physionet.org/*
+benchmark/
+logs/
+__pycache__/
+
+.agents/
+graphify-out/

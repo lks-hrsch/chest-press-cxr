@@ -1,0 +1,53 @@
+{
+    "name": "chest-press-cxr",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "features": {
+        "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+    },
+    "runArgs": [
+        "--device=nvidia.com/gpu=all",
+        "--userns=keep-id",
+        "--shm-size=16g"
+    ],
+    "containerEnv": {
+        "UV_LINK_MODE": "copy",
+        "UV_CACHE_DIR": "/home/ubuntu/.cache/uv",
+        "UV_COMPILE_BYTECODE": "1",
+        "UV_PYTHON_DOWNLOADS": "0"
+    },
+    "mounts": [
+        "source=/mnt/mars/datasets/physionet.org,target=/mnt/mars/datasets/physionet.org,type=bind,readonly",
+        "source=${localEnv:HOME}/.cache/huggingface,target=/home/ubuntu/.cache/huggingface,type=bind",
+        "source=claude-code-config-${devcontainerId},target=/home/ubuntu/.claude,type=volume",
+        "source=uv-cache,target=/home/ubuntu/.cache/uv,type=volume"
+    ],
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
+                "editor.formatOnSave": true,
+                "[python]": {
+                    "editor.defaultFormatter": "charliermarsh.ruff",
+                    "editor.codeActionsOnSave": { "source.organizeImports": "explicit" }
+                },
+                "python.testing.pytestEnabled": true
+            },
+            "extensions": [
+                "ms-python.python",
+                "charliermarsh.ruff",
+                "Anthropic.claude-code",
+                "tamasfe.even-better-toml",
+                "ms-toolsai.jupyter",
+                "ms-toolsai.vscode-jupyter-cell-tags",
+                "ms-toolsai.jupyter-renderers",
+                "ms-toolsai.vscode-jupyter-powertoys",
+                "ms-toolsai.vscode-jupyter-slideshow",
+                "DavidAnson.vscode-markdownlint"
+            ]
+        }
+    },
+    "postCreateCommand": "uv sync",
+    "remoteUser": "ubuntu"
+}
