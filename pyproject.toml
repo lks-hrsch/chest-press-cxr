@@ -21,7 +21,7 @@ dependencies = [
     "transformers>=5.5",
     "accelerate>=1.13.0",
     "flash-attn>=2.8.3",
-    "vllm==0.22.0",
+    "vllm==0.27.0",
     # FlashInfer prebuilt kernels — avoids runtime nvcc JIT on HPC nodes that lack a CUDA toolkit.
     # flashinfer-python and flashinfer-cubin are already transitive vLLM deps; pinning them
     # here makes the setup explicit. flashinfer-jit-cache supplies prebuilt host-side bindings
