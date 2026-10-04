@@ -360,6 +360,79 @@ wheels = [
 ]
 
 [[package]]
+name = "chest-press-cxr"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "accelerate" },
+    { name = "altair" },
+    { name = "bert-score" },
+    { name = "bitsandbytes" },
+    { name = "evaluate" },
+    { name = "flash-attn" },
+    { name = "flashinfer-cubin" },
+    { name = "flashinfer-jit-cache" },
+    { name = "flashinfer-python" },
+    { name = "ipykernel" },
+    { name = "liger-kernel" },
+    { name = "matplotlib" },
+    { name = "nltk" },
+    { name = "peft" },
+    { name = "polars" },
+    { name = "radgraph" },
+    { name = "rouge-score" },
+    { name = "scikit-learn" },
+    { name = "tensorboard" },
+    { name = "torch" },
+    { name = "torchvision" },
+    { name = "tqdm" },
+    { name = "transformers" },
+    { name = "trl" },
+    { name = "vllm" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "ruff" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "accelerate", specifier = ">=1.13.0" },
+    { name = "altair", specifier = ">=6.0.0" },
+    { name = "bert-score", specifier = ">=0.3.13" },
+    { name = "bitsandbytes", specifier = ">=0.45" },
+    { name = "evaluate", specifier = ">=0.4.6" },
+    { name = "flash-attn", url = "https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.9.4/flash_attn-2.8.3+cu130torch2.11-cp312-cp312-linux_x86_64.whl" },
+    { name = "flashinfer-cubin" },
+    { name = "flashinfer-jit-cache", url = "https://github.com/flashinfer-ai/flashinfer/releases/download/v0.6.11.post2/flashinfer_jit_cache-0.6.11.post2+cu130-cp39-abi3-manylinux_2_28_x86_64.whl" },
+    { name = "flashinfer-python" },
+    { name = "ipykernel", specifier = ">=7.1.0" },
+    { name = "liger-kernel", specifier = ">=0.5" },
+    { name = "matplotlib", specifier = ">=3.10.7" },
+    { name = "nltk", specifier = ">=3.9.2" },
+    { name = "peft", specifier = ">=0.14" },
+    { name = "polars", specifier = ">=1.40" },
+    { name = "radgraph", specifier = ">=0.0.7" },
+    { name = "rouge-score", specifier = ">=0.1.2" },
+    { name = "scikit-learn", specifier = ">=1.4" },
+    { name = "tensorboard", specifier = ">=2.19" },
+    { name = "torch", specifier = ">=2.11" },
+    { name = "torchvision", specifier = ">=0.26" },
+    { name = "tqdm", specifier = ">=4.67.1" },
+    { name = "transformers", specifier = ">=5.5" },
+    { name = "trl", specifier = ">=0.16" },
+    { name = "vllm", specifier = "==0.22.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pytest", specifier = ">=9.0.3" },
+    { name = "ruff", specifier = ">=0.15.12" },
+]
+
+[[package]]
 name = "click"
 version = "8.4.2"
 source = { registry = "https://pypi.org/simple" }
@@ -587,7 +660,7 @@ wheels = [
 
 [[package]]
 name = "datasets"
-version = "5.0.0"
+version = "5.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dill" },
@@ -605,9 +678,9 @@ dependencies = [
     { name = "tqdm" },
     { name = "xxhash" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d9/85/ce4f780c32f7e36d71257f1c27e8ba898ebe379cb54f211f5f2013f2c219/datasets-5.0.0.tar.gz", hash = "sha256:83dbbbdb07a33b82192b8c419deb18739b138ee2ce1a322d55ce6b100954ec1a", size = 631708, upload-time = "2026-06-05T13:18:26.124Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0a/5b/836516269d4f618efe621661cfb6f9acc57e6f95265db3efaee48a5ffe04/datasets-5.0.1.tar.gz", hash = "sha256:ce22bb851efd7494f08aad33b940803784434f6e77763d00679a0dc45fcf686a", size = 641498, upload-time = "2026-07-28T11:09:12.016Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/05/66/73034ad30b59f13439b75e620989dacba4c047256e358ba7c2e9ec98ea22/datasets-5.0.0-py3-none-any.whl", hash = "sha256:7dd34927a0fd7046e98aad5cb9430e699c373238a15befa7b9bf22b991a7fee6", size = 555084, upload-time = "2026-06-05T13:18:24.435Z" },
+    { url = "https://files.pythonhosted.org/packages/44/0b/98fc6eb83333508ca5f44c52b3e287ea8137a0ad582714e2cbc67a02154b/datasets-5.0.1-py3-none-any.whl", hash = "sha256:9fbf73688f8c18f7529b4fe592abd04015f81d1e58001e4bac73ffb2b39d7cc4", size = 559079, upload-time = "2026-07-28T11:09:10.266Z" },
 ]
 
 [[package]]
@@ -1638,79 +1711,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/d6/54/cfe61301667036ec958cb99bd3efefba235e65cdeb9c84d24a8293ba1d90/mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba", size = 8729, upload-time = "2022-08-14T12:40:10.846Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8", size = 9979, upload-time = "2022-08-14T12:40:09.779Z" },
-]
-
-[[package]]
-name = "chest-press-cxr"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "accelerate" },
-    { name = "altair" },
-    { name = "bert-score" },
-    { name = "bitsandbytes" },
-    { name = "evaluate" },
-    { name = "flash-attn" },
-    { name = "flashinfer-cubin" },
-    { name = "flashinfer-jit-cache" },
-    { name = "flashinfer-python" },
-    { name = "ipykernel" },
-    { name = "liger-kernel" },
-    { name = "matplotlib" },
-    { name = "nltk" },
-    { name = "peft" },
-    { name = "polars" },
-    { name = "radgraph" },
-    { name = "rouge-score" },
-    { name = "scikit-learn" },
-    { name = "tensorboard" },
-    { name = "torch" },
-    { name = "torchvision" },
-    { name = "tqdm" },
-    { name = "transformers" },
-    { name = "trl" },
-    { name = "vllm" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "pytest" },
-    { name = "ruff" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "accelerate", specifier = ">=1.13.0" },
-    { name = "altair", specifier = ">=6.0.0" },
-    { name = "bert-score", specifier = ">=0.3.13" },
-    { name = "bitsandbytes", specifier = ">=0.45" },
-    { name = "evaluate", specifier = ">=0.4.6" },
-    { name = "flash-attn", url = "https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.9.4/flash_attn-2.8.3+cu130torch2.11-cp312-cp312-linux_x86_64.whl" },
-    { name = "flashinfer-cubin" },
-    { name = "flashinfer-jit-cache", url = "https://github.com/flashinfer-ai/flashinfer/releases/download/v0.6.11.post2/flashinfer_jit_cache-0.6.11.post2+cu130-cp39-abi3-manylinux_2_28_x86_64.whl" },
-    { name = "flashinfer-python" },
-    { name = "ipykernel", specifier = ">=7.1.0" },
-    { name = "liger-kernel", specifier = ">=0.5" },
-    { name = "matplotlib", specifier = ">=3.10.7" },
-    { name = "nltk", specifier = ">=3.9.2" },
-    { name = "peft", specifier = ">=0.14" },
-    { name = "polars", specifier = ">=1.40" },
-    { name = "radgraph", specifier = ">=0.0.7" },
-    { name = "rouge-score", specifier = ">=0.1.2" },
-    { name = "scikit-learn", specifier = ">=1.4" },
-    { name = "tensorboard", specifier = ">=2.19" },
-    { name = "torch", specifier = ">=2.11" },
-    { name = "torchvision", specifier = ">=0.26" },
-    { name = "tqdm", specifier = ">=4.67.1" },
-    { name = "transformers", specifier = ">=5.5" },
-    { name = "trl", specifier = ">=0.16" },
-    { name = "vllm", specifier = "==0.22.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "pytest", specifier = ">=9.0.3" },
-    { name = "ruff", specifier = ">=0.15.12" },
 ]
 
 [[package]]
